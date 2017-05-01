@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class PreFilter extends ZuulFilter {
 
-  private static Logger log = LoggerFactory.getLogger(SimpleFilter.class);
+  private static Logger log = LoggerFactory.getLogger(PreFilter.class);
 
   @Override
   public String filterType() {

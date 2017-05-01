@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    expose: ["27017"]
+    environment:
+      MONGODB_USER: admin
+      MONGODB_PASS: admin@123
+      MONGODB_DATABASE: test
+    restart: always    
+    volumes:
+      - "mongo_data:/var/lib/mongodb"
+
+  api-gateway:
+    build: api-gateway
+    ports: 
+      - "8080:8080"
+          
+  message-broker:
+    image: rabbitmq:3
+    expose: ["15672","5672"]
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  
+volumes:
+  mongo_data: ~

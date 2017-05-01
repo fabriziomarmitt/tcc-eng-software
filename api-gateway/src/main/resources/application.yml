@@ -1,0 +1,20 @@
+zuul:
+  debug:
+    request: true
+  routes:
+    cancelamento:
+      path: /api/v1/assinaturas/assinatura/*/cancelar
+      url: http://localhost:8081/api/v1/assinaturas/assinatura
+    suspencao:
+      path: /api/v1/assinaturas/assinatura/*/suspender
+      url: http://localhost:8081/api/v1/assinaturas/assinatura
+    assinaturas:
+      path: /api/v1/assinaturas/**
+      url: http://localhost:8081/api/v1/assinaturas/assinatura
+
+ribbon:
+  eureka:
+    enabled: false
+
+server:
+  port: 8080

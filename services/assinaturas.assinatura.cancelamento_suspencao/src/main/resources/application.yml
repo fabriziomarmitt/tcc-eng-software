@@ -1,0 +1,14 @@
+
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: assinaturas.assinatura.cancelamento_suspencao
+  data:
+    mongodb:
+      database: assinaturas_assinatura_cancelamentoSuspencao
+      host: localhost
+      port: 27017
+

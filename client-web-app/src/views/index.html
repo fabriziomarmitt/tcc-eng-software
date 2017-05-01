@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/public/css/styles.css">
+	<title></title>
+</head>
+<body>
+	<div id="container">
+		<table id="assinatura">
+			<tr>
+				<td>Jornal</td>
+				<td>ZH</td>
+				<td>Periodo Atual</td>
+				<td>033</td>
+				<td>Inicio Periodo</td>
+				<td>28/02/2016</td>
+			</tr>
+			<tr>
+				<td>Produto</td>
+				<td>Impresso</td>
+				<td>Situação</td>
+				<td>Ativo</td>
+				<td>Fim do Períodp</td>
+				<td>28/03/2016</td>
+			</tr>
+		</table>
+		<table id="assinante">
+			<tr>
+				<td>Nome</td>
+				<td>Fabrizio</td>
+			</tr>
+		</table>
+		<table id="tabs">
+			<tr>
+				<td><a class="active" href="#suspencao">Suspenção</a></td>
+				<td><a href="#cancelamento">Cancelamento</a></td>
+			</tr>
+		</table>
+		<form  id="suspencao_forms" onsubmit="return submitSuspencao(this)" method="post">
+			<table>
+				<tr>
+					<td>Data de Início</td>
+					<td><input type="text" name="dataInicio" value="" placeholder="26/10/2017"></td>
+					<td><i class="fa fa-info" /> Data de início de suspenção</td>
+				</tr>
+				<tr>
+					<td>Data de Fim</td>
+					<td><input type="text" name="dataFim" value="" placeholder="26/11/2017"></td>
+					<td><i class="fa fa-info" /> Data de fim de suspenção</td>
+				</tr>
+				<tr>
+					<td>Motivo</td>
+					<td><textarea name="motivo" id="" cols="53" rows="10"></textarea></td>
+					<td><i class="fa fa-info" /> Motivo de suspenção</td>
+				</tr>
+			</table>
+			<div id="save_button">
+				<button>Save</button>
+			</div>
+		</form>
+		<form  id="cancelamento_forms" onsubmit="return submitCancelamento(this)" method="post">
+			<table>
+				<tr>
+					<td>Motivo</td>
+					<td><textarea name="motivo" id="" cols="53" rows="10"></textarea></td>
+					<td><i class="fa fa-info" /> Motivo de cancelamento</td>
+				</tr>
+			</table>
+			<div id="save_button">
+				<button>Save</button>
+			</div>
+		</form>
+
+
+
+
+	</div>
+	<script src="/public/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+            $(window).on('hashchange', function() {
+                var hash = location.hash;
+                $( "#tabs a" ).each(function() {
+                    var that = $( this );
+                    that[ that.attr( "href" ) === hash ? "addClass" : "removeClass" ]( "active" );
+                });
+                $('form').hide();
+				$(hash + '_forms').show();
+            });
+        });
+		
+		function submitSuspencao(form) {
+            $.post( "/api/suspender", $( form ).serialize(), function (data) {
+
+            }, "json");
+            event.preventDefault();
+			return false;
+        }
+
+        function submitCancelamento(form) {
+            $.post( "/api/cancelar", $( form ).serialize(), function (data) {
+
+            }, "json");
+            event.preventDefault();
+            return false;
+        }
+
+	</script>
+</body>
+</html>

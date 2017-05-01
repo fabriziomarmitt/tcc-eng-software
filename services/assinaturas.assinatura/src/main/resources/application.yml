@@ -1,0 +1,13 @@
+
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: assinaturas.assinatura
+  data:
+    mongodb:
+      database: assinaturas_assinatura
+      host: localhost
+      port: 27017
